@@ -1,0 +1,29 @@
+@use '../../sass' as *;
+
+.character {
+  width: 260px;
+  @include flex();
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 13px 27px -5px rgb(50 50 93/25%),0 8px 16px -8px rgb(0 0 0/30%);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &--info {
+    width: 100%;
+    min-height: 102px;
+    background-color: $text-color;
+    color: $background;
+    padding: 1rem;
+  }
+
+  &--description {
+    span {
+      font-weight: bold;
+    }
+  }
+}
+

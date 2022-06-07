@@ -1,0 +1,26 @@
+@use '../../sass' as *;
+
+.character-list {
+  margin-top: 3rem;
+  @include flex();
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.character--btn {
+  width: 50vw;
+  margin-top: 2rem;
+  margin-left: 25vw;
+  background-color: $text-color;
+  color: $background;
+  border-radius: 8px;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.25rem;
+  transition: 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
