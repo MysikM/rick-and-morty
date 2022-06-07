@@ -1,11 +1,9 @@
 import React from 'react';
-import './my-watch-list.scss';
+import Title from "../../components/Title/Title";
 
 const MyWatchList = () => {
     return (
-        <div>
-            MyWatchList
-        </div>
+        <Title content='In developing...' />
     );
 };
 
