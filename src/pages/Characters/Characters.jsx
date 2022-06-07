@@ -1,11 +1,14 @@
 import React from 'react';
-import './characters.scss';
+import './characters.scss'
+import Selects from "../../components/Selects/Selects";
+import CharacterList from "../../components/CharacterList/CharacterList";
 
 const Characters = () => {
     return (
-        <div>
-            Characters
-        </div>
+        <main className='characters'>
+            <Selects />
+            <CharacterList />
+        </main>
     );
 };
 

@@ -1,0 +1,11 @@
+@use '../../sass' as *;
+
+.selects {
+  width: 80vw;
+  margin: 0 auto;
+
+  &--container {
+    @include flex();
+    gap: 2rem;
+  }
+}
