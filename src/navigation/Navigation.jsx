@@ -12,6 +12,7 @@ const Navigation = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<Navigate to='/characters' />} />
+                <Route path="/rick-and-morty" element={<Navigate to='/characters' />} />
                 <Route path="/characters" element={<Characters />} />
                 <Route path="/characters/:id" element={<Character />} />
                 <Route path="/my-watch-list" element={<MyWatchList />} />
