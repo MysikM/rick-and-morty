@@ -17,6 +17,22 @@ export const loadCharacters = createAsyncThunk(
     }
 );
 
+export const fetchCharacterById = createAsyncThunk(
+    'character/fetchCharacterById',
+    async (id, thunkAPI) => {
+        try {
+            const response = await fetch(`${URL_CHARACTER}/${id}`);
+            const data = await response.json();
+            if(data?.error) {
+                throw new Error(data?.error);
+            }
+            return data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
 const characterSlice = createSlice({
     name: 'character',
     initialState: {
@@ -29,6 +45,18 @@ const characterSlice = createSlice({
         status: '',
         gender: '',
         name: '',
+        character: {
+            name: '',
+            species: '',
+            gender: '',
+            location: '',
+            episode: '',
+            status: '',
+            created: '',
+            image: '',
+            isLoading: false,
+            error: null,
+        },
     },
     reducers: {
         changeSpecies: (state, action) => {
@@ -62,6 +90,18 @@ const characterSlice = createSlice({
             state.gender = '';
             state.name = '';
         },
+        initialCharacter: (state) => {
+            state.character.name = '';
+            state.character.species = '';
+            state.character.gender = '';
+            state.character.location = '';
+            state.character.episode = '';
+            state.character.status = '';
+            state.character.created = '';
+            state.character.image = '';
+            state.character.isLoading = false;
+            state.character.error = null;
+        }
     },
     extraReducers: {
         [loadCharacters.pending]: (state) => {
@@ -78,9 +118,27 @@ const characterSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload.message;
         },
+        [fetchCharacterById.pending]: (state) => {
+            state.character.isLoading = true;
+        },
+        [fetchCharacterById.fulfilled]: (state, action) => {
+            state.character.name = action.payload.name;
+            state.character.species = action.payload.species;
+            state.character.gender = action.payload.gender;
+            state.character.location = action.payload.location.name;
+            state.character.episode = action.payload.episode.length;
+            state.character.status = action.payload.status;
+            state.character.created = new Date(action.payload.created).toLocaleString()
+            state.character.image = action.payload.image;
+            state.character.isLoading = false;
+        },
+        [fetchCharacterById.rejected]: (state, action) => {
+            state.character.isLoading = false;
+            state.character.error = action.payload.message;
+        },
     }
 });
 
 export default characterSlice.reducer;
 
-export const {changeSpecies, changeStatus, changeGender, initial, changeName} = characterSlice.actions;
+export const {changeSpecies, changeStatus, changeGender, initial, changeName, initialCharacter} = characterSlice.actions;
