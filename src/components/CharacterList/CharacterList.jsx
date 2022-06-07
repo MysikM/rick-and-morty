@@ -1,25 +1,53 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './character-list.scss';
 import CharacterCard from "../CharacterCard/CharacterCard";
+import {useDispatch, useSelector} from "react-redux";
+import {initial, loadCharacters} from "../../store/slices/characterSlice";
+import Title from "../Title/Title";
+import Preload from "../Preloader/Preloader";
 
 const CharacterList = () => {
-    return (
-        <>
-            <ul className='character-list'>
-                    <CharacterCard  id={1} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={2} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={3} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={4} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={5} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={6} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={7} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={8} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={9} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={10} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-                    <CharacterCard  id={11} name='Test' status='Test' species='Test' gender='Test' image='https://raw.githubusercontent.com/Adalab/rick-y-morty/master/assets/img/8.jpeg' />
-            </ul>
-        </>
-    );
+        const dispatch = useDispatch();
+        const [page, setPage] = useState(() => 1);
+        const loadMore = () => setPage(page + 1);
+        const {
+                characters,
+                pages,
+                isLoading,
+                error,
+                species,
+                status,
+                gender,
+                name
+        } = useSelector(state => state.character);
+
+        useEffect(()=>{
+                return () => {
+                        dispatch(initial())
+                };
+        } ,[]);
+
+        useEffect(()=>{
+                dispatch(loadCharacters({page, species, gender, status, name}))
+        },[page, species, gender, status, name]);
+
+        useEffect(()=>{
+                setPage(1);
+        }, [species, gender, status]);
+
+        return (
+            <>
+                    <ul className='character-list'>
+                            {characters.length > 0
+                                ? characters?.map(el => <CharacterCard key={el.id} {...el} />)
+                                :  !isLoading && (<Title content='No result' />)
+                            }
+                    </ul>
+                    {isLoading && <Preload />}
+                    {page < pages && (<button className='character--btn' onClick={loadMore}>Load more!</button>)}
+                    {error && <Title content={error} /> }
+            </>
+        );
 };
 
 export default CharacterList;
