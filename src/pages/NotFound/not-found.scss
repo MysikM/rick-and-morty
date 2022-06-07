@@ -1,1 +1,8 @@
 @use '../../sass' as *;
+
+.not-found {
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
