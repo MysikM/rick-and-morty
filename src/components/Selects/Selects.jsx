@@ -2,6 +2,8 @@ import React from 'react';
 import Title from "../Title/Title";
 import './selects.scss'
 import {useSelector} from "react-redux";
+import CustomSelect from "../CustomSelect/CustomSelect";
+import {genderSelect, speciesSelect, statusSelect, typeSelects} from "../../data/data";
 
 const Selects = () => {
     const { count } = useSelector(state => state.character);
@@ -9,7 +11,9 @@ const Selects = () => {
         <section className='selects'>
             <Title content={`${count || 0} characters`} />
             <div className='selects--container'>
-              empty
+                <CustomSelect selectList={statusSelect} type={typeSelects.STATUS} />
+                <CustomSelect selectList={speciesSelect} type={typeSelects.SPECIES} />
+                <CustomSelect selectList={genderSelect} type={typeSelects.GENDER} />
             </div>
         </section>
     );
