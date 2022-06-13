@@ -1,15 +1,23 @@
 import React, {useState} from 'react';
 import './TodoAdd.scss';
+import {useDispatch} from "react-redux";
+import {addTodo} from "../../store/slices/todoSlice";
 
 const TodoAdd = () => {
     const [newItem, setNewItem] = useState('');
+    const dispatch = useDispatch();
 
     const handleInput = (e) => {
         setNewItem(e.target.value);
     };
 
     const createNewItem = () => {
-        console.log('click');
+        setNewItem('');
+        dispatch(addTodo({
+            id: new Date().getTime(),
+            content: newItem,
+            status: false
+        }))
     };
 
     return (

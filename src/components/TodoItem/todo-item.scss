@@ -6,6 +6,11 @@ li.list-group-item{
   @include flex(center, space-between);
   padding: 1rem;
   box-shadow: 0 0 3px $background;
+  cursor: pointer;
+
+  &__active {
+    text-decoration: line-through;
+  }
 
   svg{
     cursor: pointer;
