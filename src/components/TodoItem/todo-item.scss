@@ -1,0 +1,17 @@
+@use '../../sass' as *;
+li.list-group-item{
+  background-color: $background;
+  color: $text-color;
+}
+
+.delete{
+  cursor: pointer;
+}
+
+label.add{
+  margin-bottom: 15px;
+}
+
+.filtred{
+  display: none !important;
+}

@@ -1,0 +1,6 @@
+@use '../../sass' as *;
+
+.todo--add {
+  @include flex();
+  flex-direction: column;
+}
