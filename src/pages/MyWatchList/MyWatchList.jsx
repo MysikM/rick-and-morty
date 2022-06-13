@@ -11,8 +11,8 @@ const MyWatchList = () => {
             <div className='my-watch--container'>
                 <Title content='My watch list' />
                 <TodoSearch />
-                <TodoList />
                 <TodoAdd />
+                <TodoList />
             </div>
         </section>
     );

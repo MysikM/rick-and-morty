@@ -7,18 +7,26 @@ const TodoAdd = () => {
     const [newItem, setNewItem] = useState('');
     const dispatch = useDispatch();
 
+    const createNewItem = () => {
+        if(newItem.trim() !== '') {
+            setNewItem('');
+            dispatch(addTodo({
+                id: new Date().getTime(),
+                content: newItem.trim(),
+                status: false,
+            }));
+        }
+    };
+
     const handleInput = (e) => {
         setNewItem(e.target.value);
     };
 
-    const createNewItem = () => {
-        setNewItem('');
-        dispatch(addTodo({
-            id: new Date().getTime(),
-            content: newItem,
-            status: false
-        }))
-    };
+    const handleKey = (e) => {
+        if(e.keyCode === 13) {
+            createNewItem();
+        }
+    }
 
     return (
         <div className='todo--add'>
@@ -28,6 +36,7 @@ const TodoAdd = () => {
                 value={newItem}
                 onChange={handleInput}
                 placeholder='Add New Item'
+                onKeyDown={handleKey}
             />
             <button
                 className='todo--btn-add'
