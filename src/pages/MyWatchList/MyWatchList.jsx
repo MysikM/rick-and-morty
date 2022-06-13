@@ -7,11 +7,13 @@ import Title from "../../components/Title/Title";
 
 const MyWatchList = () => {
     return (
-        <section className='my-watch-container'>
-            <Title content='My watch list' />
-            <TodoSearch />
-            <TodoList />
-            <TodoAdd />
+        <section className='my-watch'>
+            <div className='my-watch--container'>
+                <Title content='My watch list' />
+                <TodoSearch />
+                <TodoList />
+                <TodoAdd />
+            </div>
         </section>
     );
 };

@@ -4,7 +4,7 @@ import {IoTrashOutline} from "react-icons/io5";
 
 const TodoItem = () => {
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
+        <li className="list-group-item">
             <span>eat pizza</span>
             <IoTrashOutline />
         </li>

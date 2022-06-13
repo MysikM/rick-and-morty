@@ -1,6 +1,11 @@
 @use '../../sass' as *;
 
-.my-watch-container {
+.my-watch {
   @include flex();
-  flex-direction: column;
+  &--container {
+    @include flex();
+    flex-direction: column;
+    max-width: 550px;
+    width: 100%;
+  }
 }

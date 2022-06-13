@@ -1,17 +1,17 @@
 @use '../../sass' as *;
 li.list-group-item{
-  background-color: $background;
+  background-color: $background-modal;
   color: $text-color;
-}
+  width: 100%;
+  @include flex(center, space-between);
+  padding: 1rem;
+  box-shadow: 0 0 3px $background;
 
-.delete{
-  cursor: pointer;
+  svg{
+    cursor: pointer;
+  }
 }
 
 label.add{
   margin-bottom: 15px;
-}
-
-.filtred{
-  display: none !important;
 }

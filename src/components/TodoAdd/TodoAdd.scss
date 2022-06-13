@@ -3,4 +3,27 @@
 .todo--add {
   @include flex();
   flex-direction: column;
+  width: 100%;
+}
+
+.todo--form-add {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: $text-color;
+  outline: none;
+  border: none;
+  font-weight: bold;
+}
+
+.todo--btn-add {
+  margin-top: 1rem;
+  width: 100%;
+  color: $text-color;
+  font-weight: bold;
+  font-size: 1.25rem;
+  border: 2px solid $text-color;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
