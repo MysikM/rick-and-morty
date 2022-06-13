@@ -1,4 +1,5 @@
 export const URL_CHARACTER = 'https://rickandmortyapi.com/api/character';
+export const TODO_LIST = 'TODO_LIST';
 
 export const statusSelect = [
     {id:1, name: 'all statuses', val:''},

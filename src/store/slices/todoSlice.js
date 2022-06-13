@@ -3,16 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const todoSlice = createSlice({
     name: 'todos',
     initialState: {
-        todos: [
-            {id: 1, content: 'eat pizza', status: false},
-            {id: 2, content: 'listen to music', status: false},
-            {id: 3, content: 'end home work', status: false},
-        ],
-        filterTodo: [
-            {id: 1, content: 'eat pizza', status: false},
-            {id: 2, content: 'listen to music', status: false},
-            {id: 3, content: 'end home work', status: false},
-        ],
+        todos: [],
+        filterTodo: [],
     },
     reducers: {
         addTodo: (state, action) => {
