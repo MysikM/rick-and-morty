@@ -4,6 +4,7 @@ import TodoItem from "../TodoItem/TodoItem";
 import {useDispatch, useSelector} from "react-redux";
 import {TODO_LIST} from "../../data/data";
 import {firstLoad} from "../../store/slices/todoSlice";
+import Title from "../Title/Title";
 
 const TodoList = () => {
     const {todos, filterTodo} = useSelector(state => state.todos);
@@ -21,6 +22,14 @@ const TodoList = () => {
             localStorage.setItem(TODO_LIST, JSON.stringify(todos));
         }
     }, [filterTodo]);
+
+    if(filterTodo.length === 0) {
+        return <Title content='Empty list' />
+    } else if (
+        todos.length === 0
+    ) {
+        return <Title content='No result' />
+    }
 
     return (
             <ul className='todo--list'>
